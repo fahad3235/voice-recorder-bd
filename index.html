@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Recorder BD</title>
+<meta name="description" content="Offline bilingual voice recorder with trimmer. Record, trim and export WAV - 100% offline.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">&#127908;</span>
+    <div>
+      <h1 data-i18n="appTitle">Voice Recorder BD</h1>
+      <p class="tagline" data-i18n="tagline">Record, trim and export audio - 100% offline in your browser.</p>
+    </div>
+  </div>
+  <button id="langBtn" class="btn ghost" aria-label="Language">&#2476;&#2494;&#2434;&#2482;&#2494;</button>
+</header>
+
+<main>
+  <section class="panel rec-panel" aria-label="recorder">
+    <div class="rec-row">
+      <button id="btnRecord" class="btn record"><span data-i18n="record">Record</span></button>
+      <button id="btnStop" class="btn danger" hidden><span data-i18n="stop">Stop</span></button>
+      <div class="rec-meta">
+        <div id="recTimer" class="timer">0:00</div>
+        <canvas id="meter" width="220" height="14" aria-hidden="true"></canvas>
+      </div>
+    </div>
+    <p id="recStatus" class="status" role="status"></p>
+  </section>
+
+  <section class="panel" aria-label="recordings">
+    <h2 data-i18n="recordings">Recordings</h2>
+    <div id="emptyState" class="empty" hidden>
+      <p class="empty-title" data-i18n="emptyTitle">No recordings yet</p>
+      <p data-i18n="emptyBody">Tap Record to capture your first voice note. Everything stays on this device.</p>
+    </div>
+    <div id="recList" class="cards"></div>
+  </section>
+
+  <section id="trimPanel" class="panel trim-panel" hidden aria-label="trimmer">
+    <h2 id="trimTitle">Trim</h2>
+    <p class="hint" data-i18n="trimHint">Drag the handles or type times to select the part to keep.</p>
+    <canvas id="wave" height="160" aria-label="waveform"></canvas>
+    <div class="trim-controls">
+      <label><span data-i18n="trimStart">Start</span>
+        <input id="trimStart" type="range" min="0" max="1" step="0.01" value="0">
+        <input id="trimStartNum" type="number" min="0" step="0.01" value="0" aria-label="start seconds">
+      </label>
+      <label><span data-i18n="trimEnd">End</span>
+        <input id="trimEnd" type="range" min="0" max="1" step="0.01" value="1">
+        <input id="trimEndNum" type="number" min="0" step="0.01" value="1" aria-label="end seconds">
+      </label>
+    </div>
+    <p id="trimRangeLabel" class="range-label">0:00 - 0:00</p>
+    <p id="trimErr" class="status err" hidden role="alert"></p>
+    <div class="btnrow">
+      <button id="trimPlay" class="btn ghost"><span data-i18n="playSel">Play selection</span></button>
+      <button id="trimExport" class="btn ghost"><span data-i18n="exportWav">Export WAV</span></button>
+    </div>
+    <div class="btnrow trim-save-row">
+      <input id="trimName" class="rename-input" maxlength="60" placeholder="trimmed copy name" data-i18n-ph="saveTrimAs">
+      <button id="trimSave" class="btn primary"><span data-i18n="trimSave">Save trimmed copy</span></button>
+      <button id="trimClose" class="btn ghost"><span data-i18n="cancel">Cancel</span></button>
+    </div>
+    <p class="note" data-i18n="waveNote">Audio is decoded locally for trimming; nothing is uploaded.</p>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footerNote">100% offline personal voice tool. Recordings never leave this device. Not a professional studio tool.</p>
+</footer>
+
+<script src="js/audio-core.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
